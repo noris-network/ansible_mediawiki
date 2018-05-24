@@ -3,6 +3,7 @@ A ansible Modul to talk with a mediawiki API
 ## Features
 * Supports BASIC Auth (Header) and MediaWiki Authentication
 * Request and Handle edit Tokens
+* Error Handling
 * Python2 and Python3 compatible
 ## Authentication
 * You can switch between BASIC Auth and MediaWiki Auth with the parameter 'login'
