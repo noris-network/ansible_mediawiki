@@ -1,5 +1,5 @@
 # ansible_mediawiki
-A sensible Modul to talk with a mediawiki API
+A ansible Modul to talk with a mediawiki API
 ## Features
 * Supports BASIC Auth (Header) and MediaWiki Authentication
 * Request and Handle edit Tokens
