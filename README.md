@@ -3,6 +3,7 @@ A sensible Modul to talk with a mediawiki API
 ## Features
 * Supports BASIC Auth (Header) and MediaWiki Authentication
 * Request and Handle edit Tokens
+* Python2 and Python3 compatible
 ## Authentication
 * You can switch between BASIC Auth and MediaWiki Auth with the parameter 'login'
 * "login = False" is for BASIC Auth
@@ -47,7 +48,8 @@ A sensible Modul to talk with a mediawiki API
       when: wiki_test_page.result.content.query.pages[0].pageid is not defined
 ```
 ### Example in Python
-* You can use this Module without Ansible directly in Pyhton
+* You can use this Module without Ansible directly in Python
+* This time the module uses MediaWiki Auth with a Bot Account
 ```python
 import mediawiki
 import json
