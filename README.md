@@ -6,7 +6,7 @@ A ansible modue to talk with a mediawiki API
 * Error Handling
 * Python2 and Python3 compatible
 ## Authentication
-* You can switch between BASIC Auth and MediaWiki Auth with the parameter 'login'
+* You can switch between BASIC Auth and MediaWiki Auth with the parameter 'basicauth'
 * "basicauth = True" is for BASIC Auth
 * "basicauth = False" is for MediaWiki Auth (Default)
 ## Examples
