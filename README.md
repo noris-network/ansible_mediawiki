@@ -1,5 +1,5 @@
 # ansible_mediawiki
-A ansible Modul to talk with a mediawiki API
+A ansible modue to talk with a mediawiki API
 ## Features
 * Supports BASIC Auth (Header) and MediaWiki Authentication
 * Request and Handle edit Tokens
@@ -7,13 +7,13 @@ A ansible Modul to talk with a mediawiki API
 * Python2 and Python3 compatible
 ## Authentication
 * You can switch between BASIC Auth and MediaWiki Auth with the parameter 'login'
-* "login = False" is for BASIC Auth
-* "login = True" is for MediaWiki Auth
+* "basicauth = True" is for BASIC Auth
+* "basicauth = False" is for MediaWiki Auth (Default)
 ## Examples
 ### Example in Ansible
 * This example works with Basic Auth and creates a new site if the site not exists already.
 ```yaml
-- name: Generating  Doku
+- name: Generating Doku
   hosts: localhost
   gather_facts: False
   tasks:
@@ -23,7 +23,7 @@ A ansible Modul to talk with a mediawiki API
           server: "server.fqdn"
           username: "frank"
           ssl_verify: False
-          login: False
+          basicauth: True
 
     - name: Check if Page exists
       wiki_rest:
@@ -58,7 +58,7 @@ username = "Admin@test"
 password = "<supersecurepassword>"
 
 # Create a new Instance
-restclient = mediawiki.wiki_rest_client("test.fqdn","/api.php","?action=query&meta=tokens&format=json",username,password,True,True,True)
+restclient = mediawiki.wiki_rest_client("test.fqdn","/api.php","?action=query&meta=tokens&format=json",username,password,True,True,False)
 # Get Content of a Page
 get = restclient.call('get','?action=query&prop=revisions&rvprop=content&formatversion=2&titles=sandbox4','')
 if get.content:

@@ -14,7 +14,7 @@ class rest_exception(Exception):
 
 
 class wiki_rest_client():
-    def __init__(self, hostname, prefix, init_path, username, password, ssl_verify=True, token=True, login=False):
+    def __init__(self, hostname, prefix, init_path, username, password, ssl_verify=True, token=True, basicauth=False):
         self.XSRFTOKEN='' # the actual token
         self.client = requests.session()
         self.hostname = hostname
@@ -28,9 +28,9 @@ class wiki_rest_client():
         self.userAndPass = userAndPass
         self.ssl_verify = ssl_verify
         self.token = token
-        self.login = login
-        # if login = True, Login to mediawiki, else BASIC Auth as Header
-        if self.login:
+        self.basicauth = basicauth
+        # if basicauth = False, Login to mediawiki, else BASIC Auth as Header
+        if self.basicauth:
             # get login token
             URL = "https://%s%s%s" % (self.hostname, self.prefix, '?action=query&meta=tokens&type=login&format=json')
             response = self.client.get(URL, verify=self.ssl_verify)
@@ -52,7 +52,7 @@ class wiki_rest_client():
                 raise RuntimeError(response.json()['login']['reason'])
         # edit token:
         if self.token:
-            if self.login == False:
+            if self.basicauth == True:
                 headers = { 'Authorization' : 'Basic %s' %  self.userAndPass }
             else:
                 headers = ''
@@ -67,7 +67,7 @@ class wiki_rest_client():
             method_function = self.client.post
         else:
             method_function = self.client.get
-        if self.login == False:
+        if self.basicauth == True:
             headers = {
                 'Authorization' : 'Basic %s' %  self.userAndPass,
                 }
@@ -96,7 +96,7 @@ class wiki_rest_facade(object):
             module.params['password'],
             ssl_verify = self.connection.get('ssl_verify', True),
             token = self.connection.get('token', True),
-            login = self.connection.get('login', False),
+            basicauth = self.connection.get('basicauth', False),
         )
 
     def call(self):
